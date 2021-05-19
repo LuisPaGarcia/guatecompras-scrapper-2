@@ -1,5 +1,5 @@
 const puppeteer = require("puppeteer");
-
+6;
 function delay(time) {
   return new Promise(function (resolve) {
     setTimeout(resolve, time);
@@ -8,12 +8,13 @@ function delay(time) {
 
 (async () => {
   try {
+    // Arrancar chrome
     const browser = await puppeteer.launch({
       executablePath:
         "./node_modules/puppeteer/.local-chromium/chrome-win/chrome-win/chrome.exe",
     });
+    // Abre una nueva pestaña
     const page = await browser.newPage();
-
     await page.setViewport({
       width: 1200,
       height: 800,
@@ -47,18 +48,20 @@ function delay(time) {
         document.querySelectorAll(
           "#MasterGC_ContentBlockHolder_gvResultado > tbody > .FilaTablaDetalle > td:nth-child(1) > a"
         ),
-        (e) => e.innerText
+        function extract(e) {
+          return e.innerText;
+        }
       )
     );
 
-    const urls = await page.evaluate(() =>
-      Array.from(
+    const urls = await page.evaluate(function treat() {
+      return Array.from(
         document.querySelectorAll(
           "#MasterGC_ContentBlockHolder_gvResultado > tbody > .FilaTablaDetalle > td:nth-child(2) > a"
         ),
         (e) => e.href || ""
-      )
-    );
+      );
+    });
 
     for (var index = 0; index < municipios.length; index++) {
       data.push({
