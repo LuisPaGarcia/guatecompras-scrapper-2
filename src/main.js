@@ -43,7 +43,7 @@ const firstStep = async (page) => {
     );
 
     // Set the search values
-    await page.select("#MasterGC_ContentBlockHolder_ddlAnioA", "2011");
+    await page.select("#MasterGC_ContentBlockHolder_ddlAnioA", YEAR);
     await page.select("#MasterGC_ContentBlockHolder_ddlTipoEntidad", "1");
     await delay(1000);
     await page.select("#MasterGC_ContentBlockHolder_ddlSubTipoEntidad", "6");
