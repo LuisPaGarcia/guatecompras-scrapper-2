@@ -45,7 +45,9 @@ const firstStep = async (page) => {
     // Set the search values
     await page.select("#MasterGC_ContentBlockHolder_ddlAnioA", YEAR);
     await page.select("#MasterGC_ContentBlockHolder_ddlTipoEntidad", "1");
-    await delay(1000);
+    await page.waitForSelector(
+      "#MasterGC_ContentBlockHolder_ddlSubTipoEntidad > option:nth-child(3)"
+    );
     await page.select("#MasterGC_ContentBlockHolder_ddlSubTipoEntidad", "6");
     await page.click("#MasterGC_ContentBlockHolder_BtnBuscar");
     await page.waitForSelector(
