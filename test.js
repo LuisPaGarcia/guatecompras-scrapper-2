@@ -1,7 +1,16 @@
-const json11 = require("./output/links/Compra Directa/2011.json");
-
-console.log(json11.length);
+const pt = require("path");
 function count() {
+  const YEAR = process.argv[2];
+  const path = pt.join(
+    __dirname,
+    "output",
+    "Compra Directa",
+    "links",
+    `${YEAR}.json`
+  );
+
+  const json11 = require(path);
+
   array_elements = json11;
 
   array_elements.sort();
@@ -11,7 +20,7 @@ function count() {
   for (var i = 0; i < array_elements.length; i++) {
     if (array_elements[i] != current) {
       if (cnt > 0) {
-        console.log(current + " comes --> " + cnt + " times<br>");
+        console.log(current + " comes --> " + cnt + " times");
       }
       current = array_elements[i];
       cnt = 1;
@@ -22,6 +31,7 @@ function count() {
   if (cnt > 0) {
     console.log(current + " comes --> " + cnt + " times");
   }
+  console.log(json11.length);
 }
 
 count();
