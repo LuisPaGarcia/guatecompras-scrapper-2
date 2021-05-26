@@ -4,8 +4,8 @@ const outputPath = path.join(
   __dirname,
   "../../",
   "output",
-  "links",
-  "Compra Directa"
+  "Compra Directa",
+  "links"
 );
 
 function read({ filename }) {
